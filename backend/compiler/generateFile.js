@@ -19,8 +19,9 @@ const generateFile = (format, content) =>{
     const jobID = uuidv4();
     const fileName = `${jobID}.${format}`;
     const filePath = path.join(dirCodes, fileName);
-    // const processedCode = content.replace(/\\n/g, '\n');
+    console.log("FILE PATH ", filePath);
     fs.writeFileSync(filePath, content);
+    console.log("CONSERAT  ..")
     return filePath;
 }
 
