@@ -1,0 +1,3 @@
+# Node.js backend (server/)
+backend/node_modules/
+backend/.env
