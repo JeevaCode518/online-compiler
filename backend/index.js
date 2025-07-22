@@ -4,6 +4,7 @@ import cors from 'cors';
 import router from './routes/router.js';
 import auth from './routes/auth.js';
 import DBConnection from './database/database.js';
+import api from  './routes/api.js'
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", router);
 app.use("/auth", auth);
+app.use("/api", api);
 
 const PORT = process.env.PORT;
 
