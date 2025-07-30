@@ -14,6 +14,7 @@ function App() {
   const [language, setLanguage] = useState('java');
   const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
+  const [customInput, setCustomInput] = useState('');
 
   const sampleCodes = {
     cpp: `#include <iostream>
@@ -44,7 +45,8 @@ int main() {
   const handleSubmit = async () => {
     const payload = {
       language,
-      code
+      code,
+      input: customInput
     };
 
     try {
@@ -86,6 +88,15 @@ int main() {
           className="code-editor"
         />
       </div>
+
+      <textarea
+        className="input-box"
+        placeholder="Enter custom input (optional)..."
+        value={customInput}
+        onChange={(e) => setCustomInput(e.target.value)}
+        rows={5}
+      />
+      <br></br>
 
       <button onClick={handleSubmit} type="button" className="run-button">
         <svg xmlns="http://www.w3.org/2000/svg" className="run-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">

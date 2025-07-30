@@ -17,7 +17,8 @@ if(!fs.existsSync(dirCodes)){
 
 const generateFile = (format, content) =>{
     const jobID = uuidv4();
-    const fileName = `${jobID}.${format}`;
+    // const fileName = `${jobID}.${format}`;
+    const fileName = 'Main.java';
     const filePath = path.join(dirCodes, fileName);
     console.log("FILE PATH ", filePath);
     fs.writeFileSync(filePath, content);

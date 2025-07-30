@@ -4,3 +4,11 @@ body {
     background-position: center;
   }
   
+.input-box {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  font-family: monospace;
+  border-radius: 5px;
+}
