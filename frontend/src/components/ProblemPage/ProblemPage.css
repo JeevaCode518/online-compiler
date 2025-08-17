@@ -1,236 +1,163 @@
-.problem-page {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 20px;
-  height: 100vh;
-  padding: 20px;
+/* Full-page gradient (like login page) */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  /* background: linear-gradient(135deg, #f5f7fa, #e4e7ec); */
+  background: #4b5563;
 }
 
-.problem-description {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
+/* Two-panel layout */
+.problem-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100vh;
+  padding: 10px;
+  gap: 5px;
+}
+
+/* Left panel */
+.problem-box {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 24px;
   overflow-y: auto;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
 }
 
 .problem-title {
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-  color: #222;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1f2937;
 }
+
+.problem-difficulty {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.problem-difficulty.easy { background: #dcfce7; color: #15803d; }
+.problem-difficulty.medium { background: #fef9c3; color: #ca8a04; }
+.problem-difficulty.hard { background: #fee2e2; color: #b91c1c; }
 
 .section-heading {
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 3px;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #374151;
 }
 
-.tags {
-  margin-top: 10px;
-}
-
-.tag {
-  background: #ddd;
-  padding: 4px 8px;
-  margin: 3px;
-  border-radius: 6px;
-  font-size: 12px;
+.tags .tag {
   display: inline-block;
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
 
-.code-editor-section {
+/* Right panel */
+.editor-box {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  background: rgba(227, 227, 227, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.08);
 }
 
 .editor-header {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
-.sample-test {
-  background: #f1f3f5;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 15px;
+.editor-header select {
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-weight: 500;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
+/* Editor area */
+.editor-container {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
 }
 
-.action-buttons button {
-  padding: 10px 15px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
+/* Console */
+.console-panel {
+  margin-top: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  max-height: 250px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
 }
-
-.action-buttons button:first-child {
-  background-color: #17a2b8;
-  color: white;
-}
-
-.action-buttons button:last-child {
-  background-color: #28a745;
-  color: white;
-}
-
-/* Light console */
-.console-panel-light {
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: white;
-  color: black;
-}
+.console-panel.hidden { max-height: 0; padding: 0; border: none; }
 
 .console-tabs {
   display: flex;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #e5e7eb;
 }
-
 .console-tabs button {
   flex: 1;
   padding: 8px;
-  background: #f1f1f1;
-  color: black;
   border: none;
+  background: transparent;
   cursor: pointer;
+  font-weight: 500;
 }
-
 .console-tabs button.active {
-  background: white;
-  font-weight: bold;
-  border-bottom: 2px solid #007bff;
-}
-
-.console-content {
-  padding: 10px;
-  min-height: 120px;
+  background: #eef2ff;
+  color: #4338ca;
+  border-bottom: 2px solid #4338ca;
 }
 
 .console-textarea {
   width: 100%;
-  min-height: 120px;
-  padding: 8px;
+  padding: 20px;
+  border: none;
+  outline: none;
+  background: #fff;
   font-family: monospace;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
-  color: black;
-  resize: vertical;
+  resize: none;
 }
 
-.console-textarea.editable:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
 }
 
-.console-hidden {
-  display: none;
-}
-.console-visible {
-  display: block;
-}
-
-
-/* action button css */
-/* Console button styles */
-#consolebtn {
-  background-color: #007bff; /* Blue */
-  color: white;
+.btn {
+  flex: 1;
+  padding: 9px;
+  font-weight: 600;
   border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-}
-
-#consolebtn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Run button styles */
-#runbtn {
-  background-color: #28a745; /* Green */
+  transition: all 0.3s ease;
   color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
 }
-
-#runbtn:hover {
-  background-color: #1e7e34; /* Darker green on hover */
-}
-
-/* Submit button styles */
-#submitbtn {
-  background-color: rgb(245, 40, 40); /* Yellow */
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#submitbtn:hover {
-  background-color: #f10808; /* Darker yellow on hover */
-}
-
-.console-tabs > button:hover{
-  background-color: #ada8a8
-}
-
-.problem-difficulty {
-  margin-left: auto; /* pushes it to right side */
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.problem-difficulty.easy {
-  background-color: #e6f7e6;
-  color: green;
-}
-
-.problem-difficulty.medium {
-  background-color: #fff8e1;
-  color: #b38f00;
-}
-
-.problem-difficulty.hard {
-  background-color: #fdecea;
-  color: red;
-}
-
-/* Verdict test case results */
-.verdict-test {
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 6px;
-  margin: 6px 0;
-  font-size: 14px;
-}
-
-.verdict-test.passed {
-  background-color: #d4edda;
-  color: #155724;
-  border-color: #c3e6cb;
-}
-
-.verdict-test.failed {
-  background-color: #fdecea;
-  color: #721c24;
-  border-color: #f5c6cb;
-}
+.btn.blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.btn.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+.btn.red { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+.btn.purple { background: linear-gradient(135deg, #9333ea, #6b21a8); }
+.btn:hover { transform: translateY(-2px); }

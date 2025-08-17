@@ -3,7 +3,8 @@ import AceEditor from "react-ace";
 import api from "../../axios";
 import "./ProblemPage.css";
 import { useParams } from "react-router-dom";
-import Markdown from 'react-markdown'
+import AiReviewPopup from "../AiReviewPopup/AiReviewPopup";
+import Header from "../Header/Header";
 
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-c_cpp";
@@ -36,7 +37,8 @@ const ProblemPage = () => {
   const [showConsole, setShowConsole] = useState(false);
   const [aiReview, setAiReview] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-  
+  const [loadingReview, setLoadingReview] = useState(false);
+
   useEffect(() => {
     api
       .get(`http://localhost:8000/api/problems/${problemId}`)
@@ -69,43 +71,47 @@ const ProblemPage = () => {
   };
 
   const submitCode = async () => {
-  openConsole("verdict");
-  try {
-    const res = await api.post("http://localhost:5000/api/submit", {
-      language,
-      code,
-      problemId
-    });
-    console.log("VERDICT", res.data);
-    setVerdict(res.data.results); // ✅ fixed key
-  } catch (err) {
-    setVerdict(err.message || "Error submitting code");
-  }
-};
+    openConsole("verdict");
+    try {
+      const res = await api.post("http://localhost:5000/api/submit", {
+        language,
+        code,
+        problemId
+      });
+      setVerdict(res.data.results);
+    } catch (err) {
+      setVerdict(err.message || "Error submitting code");
+    }
+  };
 
-const getAiReview = async () => {
-  try {
-    const res = await api.post("http://localhost:8000/api/ai-review", {
-      code
-    });
-    setAiReview(res.data.message);
-    setShowPopup(true); // open popup after review is received
-  } catch (error) {
-    console.log("Error getting AI-review");
-  }
-};
+  const getAiReview = async () => {
+    setShowPopup(true);
+    setLoadingReview(true);
+    try {
+      const res = await api.post("http://localhost:8000/api/ai-review", {
+        code,
+      });
+      setAiReview(res.data.message);
+    } catch (error) {
+      setAiReview("⚠️ Error getting AI review.");
+    } finally {
+      setLoadingReview(false);
+    }
+  };
 
-  if (!problem) return <div>Loading...</div>;
+  if (!problem) return <div className="loading">Loading...</div>;
 
   return (
+    <>
+    <Header />
     <div className="problem-page">
-      {/* Problem Description */}
-      <div className="problem-description">
+      {/* Left panel */}
+      <div className="problem-box">
         <h2 className="problem-title">{problem.title}</h2>
-        {/* <p><strong>Difficulty:</strong> {problem.difficulty}</p> */}
         <span className={`problem-difficulty ${problem.difficulty.toLowerCase()}`}>
-              {problem.difficulty}
+          {problem.difficulty}
         </span>
+
         <div className="section-heading">Description</div>
         <p>{problem.description}</p>
 
@@ -126,8 +132,8 @@ const getAiReview = async () => {
         </div>
       </div>
 
-      {/* Code Editor */}
-      <div className="code-editor-section">
+      {/* Right panel */}
+      <div className="editor-box">
         <div className="editor-header">
           <select value={language} onChange={(e) => handleLanguageChange(e.target.value)}>
             <option value="java">Java</option>
@@ -135,21 +141,23 @@ const getAiReview = async () => {
           </select>
         </div>
 
-        <AceEditor
-          mode={language === "cpp" ? "c_cpp" : language}
-          theme="monokai"
-          value={code}
-          onChange={(value) => setCode(value)}
-          name="codeEditor"
-          editorProps={{ $blockScrolling: true }}
-          width="100%"
-          height="400px"
-          fontSize={14}
-          style={{ borderRadius: "8px", overflow: "hidden" }}
-        />
+        <div className="editor-container">
+          <AceEditor
+            mode={language === "cpp" ? "c_cpp" : language}
+            theme="monokai"
+            value={code}
+            onChange={(value) => setCode(value)}
+            name="codeEditor"
+            editorProps={{ $blockScrolling: true }}
+            width="100%"
+            height="400px"
+            fontSize={14}
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          />
+        </div>
 
-        {/* Console Panel */}
-        <div className={`console-panel-light ${showConsole ? "console-visible" : "console-hidden"}`}>
+        {/* Console */}
+        <div className={`console-panel ${showConsole ? "visible" : "hidden"}`}>
           <div className="console-tabs">
             <button
               className={activeTab === "input" ? "active" : ""}
@@ -187,59 +195,48 @@ const getAiReview = async () => {
                 className="console-textarea"
               />
             )}
-
-           
-           {activeTab === "verdict" && (
-  <div className="console-textarea">
-    {Array.isArray(verdict) ? (
-      <>
-        <p>
-          ✅ Passed: {verdict.filter(t => t.passed).length} / {verdict.length}
-        </p>
-        {verdict.map((test, idx) => (
-          <div
-            key={idx}
-            className={`verdict-test ${test.passed ? "passed" : "failed"}`}
-          >
-            <strong>Test {idx + 1}:</strong> {test.passed ? "Passed ✅" : "Failed ❌"}
-            <br />
-          </div>
-        ))}
-      </>
-    ) : (
-      <textarea
-        value={verdict || "No verdict yet"}
-        readOnly
-        className="console-textarea"
-      />
-    )}
-  </div>
-)}
+            {activeTab === "verdict" && (
+              <div className="console-textarea verdict-box">
+                {Array.isArray(verdict) ? (
+                  <>
+                    <p>
+                      ✅ Passed: {verdict.filter(t => t.passed).length} / {verdict.length}
+                    </p>
+                    {verdict.map((test, idx) => (
+                      <div key={idx} className={`verdict-test ${test.passed ? "passed" : "failed"}`}>
+                        <strong>Test {idx + 1}:</strong> {test.passed ? "Passed ✅" : "Failed ❌"}
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <textarea
+                    value={verdict || "No verdict yet"}
+                    readOnly
+                    className="console-textarea"
+                  />
+                )}
+              </div>
+            )}
           </div>
         </div>
-         {/* Action buttons */}
+
+        {/* Action buttons */}
         <div className="action-buttons">
-          <button id="consolebtn" onClick={() => openConsole("input")}>Console</button>
-          <button id="runbtn" onClick={runCode}>Run</button>
-          <button id="submitbtn" onClick={submitCode}>Submit</button>
+          <button className="btn blue" onClick={() => openConsole("input")}>Console</button>
+          <button className="btn green" onClick={runCode}>Run</button>
+          <button className="btn red" onClick={submitCode}>Submit</button>
+          <button className="btn purple" onClick={() => getAiReview()}>AI Review</button>
         </div>
-        <button id="consolebtn" onClick={() => getAiReview()}>AiReview</button>
 
-        {/* <textarea
-                value={<Markdown>aiReview</Markdown> || "No Review yet"}
-                readOnly
-                className="console-textarea"
-        /> */}
-        <div className="console-textarea">
-          {aiReview ? (
-            <Markdown>{aiReview}</Markdown>
-          ) : (
-            <p>No Review yet</p>
-          )}
-      </div>
-        
+        <AiReviewPopup
+          show={showPopup}
+          loading={loadingReview}
+          review={aiReview}
+          onClose={() => setShowPopup(false)}
+        />
       </div>
     </div>
+  </>
   );
 };
 
