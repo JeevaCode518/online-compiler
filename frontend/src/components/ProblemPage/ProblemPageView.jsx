@@ -41,7 +41,7 @@ const ProblemPage = () => {
 
   useEffect(() => {
     api
-      .get(`http://localhost:8000/api/problems/${problemId}`)
+      .get(`https://codeverse-v5df.onrender.com/api/problems/${problemId}`)
       .then((res) => setProblem(res.data))
       .catch((err) => console.error(err));
   }, [problemId]);
@@ -59,7 +59,7 @@ const ProblemPage = () => {
   const runCode = async () => {
     openConsole("output");
     try {
-      const res = await api.post("http://localhost:5000/api/run", {
+      const res = await api.post("https://compiler-service-5phd.onrender.com/api/run", {
         language,
         code,
         input
@@ -73,7 +73,7 @@ const ProblemPage = () => {
   const submitCode = async () => {
     openConsole("verdict");
     try {
-      const res = await api.post("http://localhost:5000/api/submit", {
+      const res = await api.post("https://compiler-service-5phd.onrender.com/api/submit", {
         language,
         code,
         problemId
@@ -88,7 +88,7 @@ const ProblemPage = () => {
     setShowPopup(true);
     setLoadingReview(true);
     try {
-      const res = await api.post("http://localhost:8000/api/ai-review", {
+      const res = await api.post("https://codeverse-v5df.onrender.com/api/ai-review", {
         code,
       });
       setAiReview(res.data.message);

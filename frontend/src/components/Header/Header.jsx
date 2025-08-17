@@ -9,7 +9,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await api.post("http://localhost:8000/auth/logout", {}, { withCredentials: true });
+      await api.post("https://codeverse-v5df.onrender.com/auth/logout", {}, { withCredentials: true });
       navigate("/login");
     } catch (err) {
       console.error("Error logging out", err);

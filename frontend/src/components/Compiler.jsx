@@ -50,7 +50,8 @@ int main() {
     };
 
     try {
-      const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+      // const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+      const BASE_URL = "https://codeverse-v5df.onrender.com/run";
       const { data } = await api.post(BASE_URL, payload);
       setOutput(data.output);
     } catch (error) {

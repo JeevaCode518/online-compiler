@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create a custom Axios instance
 const api = axios.create({
-  baseURL: "http://localhost:5173", // Your backend base URL
+  baseURL: "https://codeverse-v5df.onrender.com", // Your backend base URL
   withCredentials: true, // Needed for cookies
 });
 
