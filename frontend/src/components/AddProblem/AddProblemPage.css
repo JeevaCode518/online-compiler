@@ -1,0 +1,117 @@
+.add-problem-page {
+  background-color: #1f2937;
+  min-height: 100vh;
+  padding: 60px 20px 40px; /* top padding for header */
+  font-family: 'Inter', sans-serif;
+  color: #f9fafb;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  background: #374151;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Main input fields (Title, Problem Number, Difficulty, Tags, Constraints) */
+input.main-input,
+select.main-input {
+  padding: 12px 14px;
+  border-radius: 6px; /* flatter curve */
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: #4b5563;
+  color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+input.main-input:focus,
+select.main-input:focus {
+  background: #6b7280;
+}
+
+/* Larger textareas (Description, Sample Input/Output, Hidden Test Cases) */
+textarea.large-textarea {
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #4b5563;
+  color: #f9fafb;
+  transition: all 0.2s ease;
+  min-height: 120px;
+}
+
+textarea.large-textarea:focus {
+  background: #6b7280;
+}
+
+/* Hidden Test Case list */
+.hidden-testcases-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.hidden-testcases-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* Remove button */
+.remove-btn {
+  margin-left: 8px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Submit button */
+button.btn {
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+button.btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
