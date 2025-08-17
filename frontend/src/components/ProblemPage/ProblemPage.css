@@ -1,0 +1,236 @@
+.problem-page {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 20px;
+  height: 100vh;
+  padding: 20px;
+}
+
+.problem-description {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.problem-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.section-heading {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 3px;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.tag {
+  background: #ddd;
+  padding: 4px 8px;
+  margin: 3px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.code-editor-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sample-test {
+  background: #f1f3f5;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.action-buttons button {
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.action-buttons button:first-child {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.action-buttons button:last-child {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Light console */
+.console-panel-light {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  color: black;
+}
+
+.console-tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.console-tabs button {
+  flex: 1;
+  padding: 8px;
+  background: #f1f1f1;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.console-tabs button.active {
+  background: white;
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
+}
+
+.console-content {
+  padding: 10px;
+  min-height: 120px;
+}
+
+.console-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 8px;
+  font-family: monospace;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  color: black;
+  resize: vertical;
+}
+
+.console-textarea.editable:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.console-hidden {
+  display: none;
+}
+.console-visible {
+  display: block;
+}
+
+
+/* action button css */
+/* Console button styles */
+#consolebtn {
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#consolebtn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Run button styles */
+#runbtn {
+  background-color: #28a745; /* Green */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#runbtn:hover {
+  background-color: #1e7e34; /* Darker green on hover */
+}
+
+/* Submit button styles */
+#submitbtn {
+  background-color: rgb(245, 40, 40); /* Yellow */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submitbtn:hover {
+  background-color: #f10808; /* Darker yellow on hover */
+}
+
+.console-tabs > button:hover{
+  background-color: #ada8a8
+}
+
+.problem-difficulty {
+  margin-left: auto; /* pushes it to right side */
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.problem-difficulty.easy {
+  background-color: #e6f7e6;
+  color: green;
+}
+
+.problem-difficulty.medium {
+  background-color: #fff8e1;
+  color: #b38f00;
+}
+
+.problem-difficulty.hard {
+  background-color: #fdecea;
+  color: red;
+}
+
+/* Verdict test case results */
+.verdict-test {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 6px;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.verdict-test.passed {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.verdict-test.failed {
+  background-color: #fdecea;
+  color: #721c24;
+  border-color: #f5c6cb;
+}

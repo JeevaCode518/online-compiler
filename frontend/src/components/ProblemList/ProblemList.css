@@ -1,0 +1,78 @@
+.problem-list-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.problem-card {
+  background-color: white;
+  border: 2px solid #007bff; /* blue border */
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+}
+.problem-difficulty {
+  margin-left: auto; /* pushes it to right side */
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.problem-difficulty.easy {
+  background-color: #e6f7e6;
+  color: green;
+}
+
+.problem-difficulty.medium {
+  background-color: #fff8e1;
+  color: #b38f00;
+}
+
+.problem-difficulty.hard {
+  background-color: #fdecea;
+  color: red;
+}
+
+.problem-number-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.problem-number-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.problem-number {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.problem-name {
+  color: #222;
+}
+
+.problem-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background-color: #e9f5ff;
+  color: #007bff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
