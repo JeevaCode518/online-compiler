@@ -1,8 +1,0 @@
-# Node.js backend (server/)
-backend/node_modules/
-backend/.env
-backend/compiler/outputs
-backend/compiler/codes
-
-frontend/node_modules/
-frontend/.env

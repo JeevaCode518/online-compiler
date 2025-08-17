@@ -40,7 +40,7 @@ export const runHiddenTests = async (req, res) => {
 
     // 2️⃣ Fetch hidden test cases from DB
     const { data } = await axios.get(
-        `http://localhost:8000/api/problems/${problemId}/hidden`
+        `https://codeverse-v5df.onrender.com/${problemId}/hidden`
     );
 
     console.log("Hidden Test Cases ", data)
