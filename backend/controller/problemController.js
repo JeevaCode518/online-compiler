@@ -2,6 +2,7 @@ import Problem from "../models/Problem.js";
 
 export const getProblemList = async(req, res) => {
     try {
+        console.log("REQUEST HERE");
         const problems = await Problem.find({}, "title difficulty tags problemNum");
         res.status(200).json(problems);
     } catch (error) {

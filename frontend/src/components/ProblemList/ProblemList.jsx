@@ -10,9 +10,10 @@ const ProblemList = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const res = await api.get("http://localhost:8000/api/problems", {
+        const res = await api.get("https://codeverse-v5df.onrender.com/api/problems", {
           withCredentials: true
         });
+        console.log(res);
         setProblems(res.data);
       } catch (error) {
         console.error("Error fetching problems:", error);
