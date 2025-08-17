@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import ProblemList from '../components/ProblemList/ProblemList';
-import ProblemPage from '../components/ProblemPage/Problempage';
 import ContestPage from '../components/Contest/Contest';
 import ExplorePage from '../components/Explore/ExplorePage';
 import Dashboard from '../pages/Dashboard';
 import AddProblemPage from '../components/AddProblem/AddProblemPage';
+import ProblemPage from '../components/ProblemPage/ProblemPage';
 
 const AppRoutes = () => {
 return (
@@ -21,12 +21,6 @@ return (
       <Route path='/contest'  element={<ContestPage/>}/>
       <Route path='/explore'  element={<ExplorePage/>}/>
       <Route path='/addProblems'  element={<AddProblemPage/>}/>
-
-      
-
-      {/* <Route path='/contestPage'  element={<ContestPage/>}/> */}
-
-      {/* <Route path="/problems/:id" element={<ProblemDetail />} /> */}
     </Routes>
     );
 };
