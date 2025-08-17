@@ -11,10 +11,9 @@ const ProblemList = () => {
     const fetchProblems = async () => {
       try {
         const res = await api.get("http://localhost:8000/api/problems", {
-          withCredentials: true // if you’re using cookies/JWT
+          withCredentials: true
         });
-        setProblems(res.data); // update UI
-        console.log(res.data);
+        setProblems(res.data);
       } catch (error) {
         console.error("Error fetching problems:", error);
       }
@@ -25,40 +24,42 @@ const ProblemList = () => {
 
   return (
     <>
-    <Header/>
+  <Header />
+  <div className="problem-list-page">
     <div className="problem-list-container">
       <h2 className="heading">All Problems</h2>
       {problems.length > 0 ? (
-        problems.map((problem, index) => (
-            <Link
+        problems.map((problem) => (
+          <Link
             to={`/problems/${problem._id}`}
             key={problem._id}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-          <div className="problem-card" key={problem._id}>
-            <div className="problem-number-name">
-              {console.log(problem.problemNum)}
-              <span className="problem-number">#{problem.problemNum}</span>
-              <span className="problem-name">{problem.title}</span>
-              <span className={`problem-difficulty ${problem.difficulty.toLowerCase()}`}>
-                {problem.difficulty}
-              </span>
-            </div>
-            <div className="problem-tags">
-              {problem.tags.slice(0, 5).map((tag, idx) => (
-                <span className="tag" key={idx}>
-                  {tag}
+            <div className="problem-card">
+              <div className="problem-number-name">
+                <span className="problem-number">#{problem.problemNum}</span>
+                <span className="problem-name">{problem.title}</span>
+                <span className={`problem-difficulty ${problem.difficulty.toLowerCase()}`}>
+                  {problem.difficulty}
                 </span>
-              ))}
+              </div>
+
+              <div className="problem-tags">
+                {problem.tags.slice(0, 5).map((tag, idx) => (
+                  <span className="tag" key={idx}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-           </Link>
+          </Link>
         ))
       ) : (
         <p>No problems found</p>
       )}
     </div>
-    </>
+  </div>
+</>
   );
 };
 
