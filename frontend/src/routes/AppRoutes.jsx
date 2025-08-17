@@ -6,17 +6,23 @@ import ProblemList from '../components/ProblemList/ProblemList';
 import ProblemPage from '../components/ProblemPage/Problempage';
 import ContestPage from '../components/Contest/Contest';
 import ExplorePage from '../components/Explore/ExplorePage';
+import Dashboard from '../pages/Dashboard';
+import AddProblemPage from '../components/AddProblem/AddProblemPage';
 
 const AppRoutes = () => {
 return (
     <Routes>
       {/* <Route path="/" element={<Dashboard />} /> */}
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/problems" element={<ProblemList />} />
       <Route path="/problems/:problemId" element={<ProblemPage />} />
       <Route path='/contest'  element={<ContestPage/>}/>
       <Route path='/explore'  element={<ExplorePage/>}/>
+      <Route path='/addProblems'  element={<AddProblemPage/>}/>
+
+      
 
       {/* <Route path='/contestPage'  element={<ContestPage/>}/> */}
 
