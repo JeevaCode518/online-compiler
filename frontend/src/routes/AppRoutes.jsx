@@ -7,7 +7,7 @@ import ContestPage from '../components/Contest/Contest';
 import ExplorePage from '../components/Explore/ExplorePage';
 import Dashboard from '../pages/Dashboard';
 import AddProblemPage from '../components/AddProblem/AddProblemPage';
-import ProblemPage from '../components/ProblemPage/ProblemPage';
+import ProblemPage from '../components/ProblemPage/Problempage';
 
 const AppRoutes = () => {
 return (
