@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
-import { useNavigate, Link } from 'react-router-dom'; // Added Link here
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); //  Also fix this if not defined yet
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,47 +17,44 @@ function Login() {
     setMessage('');
     try {
       const res = await axios.post('http://localhost:8000/auth/login', form, {
-        withCredentials: true // if you're storing JWT in httpOnly cookie
+        withCredentials: true
       });
       const user = res.data.user;
-
       setMessage(`Welcome back, ${user.firstName}!`);
-      navigate('/problems');
-     
+      navigate('/');
     } catch (err) {
-      console.log("ERORR ", err);
       setMessage(err.response?.data || "Login failed");
     }
   };
 
   return (
     <div className="login-page">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h2 className="login-title">Login to CodeVerse</h2>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Login</button>
-
+      <div className="login-container">
+        <h2 className="login-title">Login to Codeverse</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Sign In</button>
+        </form>
         <p className="register-prompt">
-          New user? <Link className="register-link" to="/register">Join now</Link>
+          New here? <Link to="/register" className="register-link">Create an account</Link>
         </p>
-
         {message && <p className="login-message">{message}</p>}
-      </form>
+      </div>
     </div>
   );
 }
