@@ -21,7 +21,7 @@ function Login() {
       });
       const user = res.data.user;
       setMessage(`Welcome back, ${user.firstName}!`);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setMessage(err.response?.data || "Login failed");
     }
