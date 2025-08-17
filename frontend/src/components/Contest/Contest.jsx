@@ -3,17 +3,21 @@ import Header from "../Header/Header";
 
 const ContestPage = () => {
   return (
-    <>
-    <Header/>
     <div style={{
-      textAlign: "center",
-      marginTop: "50px",
-      fontSize: "24px",
-      fontWeight: "bold"
+      backgroundColor: "#4b5563", // dark background
+      minHeight: "100vh",         // full viewport height
+      color: "#f9fafb"            // optional: light text color
     }}>
-      🚀 Coming Soon!
+      <Header />
+      <div style={{
+        textAlign: "center",
+        marginTop: "50px",
+        fontSize: "24px",
+        fontWeight: "bold"
+      }}>
+        🚀 Coming Soon!
+      </div>
     </div>
-    </>
   );
 };
 
