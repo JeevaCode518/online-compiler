@@ -12,7 +12,7 @@ import ProblemPage from '../components/ProblemPage/Problempage';
 const AppRoutes = () => {
 return (
     <Routes>
-      {/* <Route path="/" element={<Dashboard />} /> */}
+      {/* <Route path="/" element={<Dashboard />}/ /> */}
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -22,6 +22,7 @@ return (
       <Route path='/explore'  element={<ExplorePage/>}/>
       <Route path='/addProblems'  element={<AddProblemPage/>}/>
     </Routes>
+
     );
 };
 
