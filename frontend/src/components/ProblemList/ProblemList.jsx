@@ -10,6 +10,7 @@ const ProblemList = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
+        // const res = await api.get("https://codeverse-v5df.onrender.com/api/problems", {
         const res = await api.get("https://codeverse-v5df.onrender.com/api/problems", {
           withCredentials: true
         });

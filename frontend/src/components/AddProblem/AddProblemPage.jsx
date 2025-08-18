@@ -44,7 +44,7 @@ const AddProblemPage = () => {
       createdBy: userId
     };
     try {
-      const res = await axios.post("http://localhost:8001/api/addProblems", problemData);
+      const res = await axios.post("https://codeverse-v5df.onrender.com/api/addProblems", problemData);
       alert("Problem added successfully!");
       console.log("Response:", res.data);
       // Optionally reset form
