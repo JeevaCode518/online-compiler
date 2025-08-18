@@ -60,7 +60,7 @@ const ProblemPage = () => {
 
     if (leftTab === "submissions") {
       api
-        .get(`https://codeverse-v5df.onrender.com/api/submissions?userId=${userId}&problemId=${problemId}`)
+        .get(`https://codeverse-v5df.onrender.com/api/getSubmissions?userId=${userId}&problemId=${problemId}`)
         .then((res) => setSubmissions(res.data))
         .catch((err) => console.error(err));
     }
