@@ -23,7 +23,7 @@ const executeJava = (filePath, input = '') => {
     const timeout = setTimeout(() => {
       run.kill();
       reject('Execution timed out');
-    }, 5000); //5 seconds max;
+    }, 50000); //15 seconds max;
 
     run.on('close', (code) => {
       clearTimeout(timeout);
