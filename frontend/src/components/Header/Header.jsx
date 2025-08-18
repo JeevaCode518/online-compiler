@@ -20,8 +20,8 @@ const Header = () => {
     <header className="app-header">
       <div className="nav-left">
          <Link 
-          to="/" 
-          className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+          to="/dashboard" 
+          className={`nav-link ${location.pathname === "/dashboard" ? "active" : ""}`}
         >
           Home
         </Link>

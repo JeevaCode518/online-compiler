@@ -16,10 +16,15 @@ function Login() {
     e.preventDefault();
     setMessage('');
     try {
+      // const res = await axios.post('https://codeverse-v5df.onrender.com/auth/login', form, {
       const res = await axios.post('https://codeverse-v5df.onrender.com/auth/login', form, {
+
         withCredentials: true
       });
       const user = res.data.user;
+      localStorage.setItem('userId', user._id); // or user.id
+      localStorage.setItem('user', JSON.stringify(user)); 
+      console.log("USER ID",localStorage.getItem("userId"));
       setMessage(`Welcome back, ${user.firstName}!`);
       navigate('/dashboard');
     } catch (err) {
