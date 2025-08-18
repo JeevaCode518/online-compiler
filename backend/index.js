@@ -25,8 +25,8 @@ app.use("/", router);
 app.use("/auth", auth);
 app.use("/api", api);
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 
 app.listen(PORT, () =>{
-    console.log(`Server Running oo the PORT ${PORT}`);
+    console.log(`Server Running On the PORT ${PORT}`);
 });
