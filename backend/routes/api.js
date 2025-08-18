@@ -11,10 +11,10 @@ const router = express.Router();
 // router.post("/run", compiler);
 
 
-router.post("/addProblems", addProblems);
+router.post("/addProblems", verifyToken, addProblems);
 // router.get("/problems", getProblemList);
-router.get("/problems", getProblemList);
-router.get("/problems/:id", getProblemById);
+router.get("/problems", verifyToken, getProblemList);
+router.get("/problems/:id", verifyToken, getProblemById);
 router.get("/problems/:id/hidden", getHiddenTestCases);
 router.post("/ai-review", getAiReview);
 export default router;
