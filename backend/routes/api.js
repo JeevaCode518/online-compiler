@@ -12,9 +12,9 @@ const router = express.Router();
 
 
 router.post("/addProblems", addProblems);
-// router.get("/problems", getProblemList);
 router.get("/problems", getProblemList);
-router.get("/problems/:id", getProblemById);
 router.get("/problems/:id/hidden", getHiddenTestCases);
+router.get("/problems/:id", getProblemById);
 router.post("/ai-review", getAiReview);
+
 export default router;
