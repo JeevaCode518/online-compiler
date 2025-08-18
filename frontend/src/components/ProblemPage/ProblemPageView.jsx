@@ -59,7 +59,7 @@ const ProblemPage = () => {
   const runCode = async () => {
     openConsole("output");
     try {
-      const res = await api.post("https://compiler-service-5phd.onrender.com/api/run", {
+      const res = await api.post("https://online-compiler-0ywr.onrender.com/api/run", {
         language,
         code,
         input
@@ -73,7 +73,7 @@ const ProblemPage = () => {
   const submitCode = async () => {
     openConsole("verdict");
     try {
-      const res = await api.post("https://compiler-service-5phd.onrender.com/api/submit", {
+      const res = await api.post("https://online-compiler-0ywr.onrender.com/api/submit", {
         language,
         code,
         problemId
