@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../Header/Header";
 import "./AddProblemPage.css";
+import axios from "axios";
 
 const AddProblemPage = () => {
   const userId = "687efc7d8ac7ecb9ccdf72b0";
@@ -13,7 +14,8 @@ const AddProblemPage = () => {
     tags: "",
     constraints: "",
     sampleInput: "",
-    sampleOutput: ""
+    sampleOutput: "",
+    hiddenTestCases: [{ input: "", output: "" }]
   });
 
   const handleChange = (e) => {
@@ -21,17 +23,46 @@ const AddProblemPage = () => {
     setProblem({ ...problem, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleHiddenTestChange = (index, field, value) => {
+    const updatedTests = [...problem.hiddenTestCases];
+    updatedTests[index][field] = value;
+    setProblem({ ...problem, hiddenTestCases: updatedTests });
+  };
 
+  const addHiddenTestCase = () => {
+    setProblem({
+      ...problem,
+      hiddenTestCases: [...problem.hiddenTestCases, { input: "", output: "" }]
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const problemData = {
       ...problem,
       tags: problem.tags.split(",").map(tag => tag.trim()).filter(Boolean),
       createdBy: userId
     };
-
-    console.log("Sending problem to backend:", problemData);
-    alert("Problem submitted! Check console.");
+    try {
+      const res = await axios.post("http://localhost:8001/api/addProblems", problemData);
+      alert("Problem added successfully!");
+      console.log("Response:", res.data);
+      // Optionally reset form
+      setProblem({
+        title: "",
+        problemNum: "",
+        description: "",
+        difficulty: "Easy",
+        tags: "",
+        constraints: "",
+        sampleInput: "",
+        sampleOutput: "",
+        hiddenTestCases: [{ input: "", output: "" }]
+      });
+    } catch (err) {
+      console.error("Error adding problem:", err);
+      alert("Failed to add problem.");
+    }
   };
 
   return (
@@ -146,6 +177,32 @@ const AddProblemPage = () => {
                 onChange={handleChange}
                 className="large-textarea"
               />
+            </div>
+
+            {/* Hidden Test Cases */}
+            <div className="form-row">
+              <label>Hidden Test Cases</label>
+              {problem.hiddenTestCases.map((test, idx) => (
+                <div key={idx} className="hidden-test-case">
+                  <input
+                    type="text"
+                    placeholder="Input"
+                    value={test.input}
+                    onChange={(e) => handleHiddenTestChange(idx, "input", e.target.value)}
+                    className="main-input"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Output"
+                    value={test.output}
+                    onChange={(e) => handleHiddenTestChange(idx, "output", e.target.value)}
+                    className="main-input"
+                  />
+                </div>
+              ))}
+              <button type="button" className="btn add-more-btn" onClick={addHiddenTestCase}>
+                + Add More
+              </button>
             </div>
 
             {/* Submit Button */}
