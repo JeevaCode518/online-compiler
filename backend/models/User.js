@@ -21,6 +21,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         required: true,
     },
+    role: {
+        type: String,
+        enum: ["user", "admin"], // only two roles
+        default: "user", // new users are normal users
+    },
+
 });
 
 const User = mongoose.model("user", userSchema);
