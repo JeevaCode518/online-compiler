@@ -6,10 +6,12 @@ import "./Header.css";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const role = localStorage.getItem("role"); 
 
   const handleLogout = async () => {
     try {
       await api.post("https://codeverse-v5df.onrender.com/auth/logout", {}, { withCredentials: true });
+      localStorage.clear();
       navigate("/");
     } catch (err) {
       console.error("Error logging out", err);
@@ -43,12 +45,15 @@ const Header = () => {
         >
           Contest
         </Link>
-         <Link 
-          to="/addProblems" 
-          className={`nav-link ${location.pathname === "/addProblems" ? "active" : ""}`}
-        >
-          Add Problems
-        </Link>
+
+        {role === "admin" && (
+          <Link 
+            to="/addProblems" 
+            className={`nav-link ${location.pathname === "/addProblems" ? "active" : ""}`}
+          >
+            Add Problems
+          </Link>
+        )}
       </div>
       <div className="nav-right">
         <button onClick={handleLogout} className="logout-btn">Logout</button>

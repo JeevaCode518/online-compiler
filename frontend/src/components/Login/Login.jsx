@@ -22,9 +22,12 @@ function Login() {
         withCredentials: true
       });
       const user = res.data.user;
-      localStorage.setItem('userId', user._id); // or user.id
+      localStorage.setItem('userId', user._id);
       localStorage.setItem('user', JSON.stringify(user)); 
+      localStorage.setItem('role', user.role); 
+      
       console.log("USER ID",localStorage.getItem("userId"));
+
       setMessage(`Welcome back, ${user.firstName}!`);
       navigate('/dashboard');
     } catch (err) {
